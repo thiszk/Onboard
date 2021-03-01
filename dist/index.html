@@ -1,92 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Trail - Rick and Morty </title>
-  <style>
-    body{
-      margin: 0px;
-    }
-    .container{
-      width: 100%;
-      height: 100%;
-
-      max-width: 1280px;
-
-    }
-    .titleBox{
-      background-color: black;
-      text-align: center;
-      width: 1280px;
-      margin-top: -50px;
-
-    }
-    .titleDescriptionBox{
-      background-color: black;
-      width: 1280px;
-      margin-top: -50px;
-    } 
-    .episodeBox{
-      background: url('img/RaM_bgd.jpg') no-repeat right ;
-      background-size:cover;
-      width: 1280px;
-      height: 720px ;
-      box-sizing: content-box ;
-      margin-top: -30px;
-    }
-
-    p.title{
-      font-size:50px;
-      color:white;
-  
-    }
-
-    p.numberOfEpisodes{
-      color: whitesmoke;
-      font-size: 20px;
-      padding-left: 20px;
-    }
-
-    p.titleDescription{
-      color: white;
-      font-size: 15px;
-      padding-left: 10px;
-    }
-
-    ol.episodeList{
-      color:yellowgreen;
-      font-size: 30px;
-      
-    }
-    li.episodeList {
-    color: white;
-    margin-left: 50px;
-    margin-top: 5px;
-}
-  </style>
-
+    <link rel="stylesheet" href="stylesheets.css" type="text/css">
   </head>
-
   <body>
     <div class="container">
-      <div class="titleBox" > 
-        <img style="float:left" src="img/RaM_Logo.png" width="100px" height="50px" >
-        <p class="title">  <i>Rick and Morty</i> </p> 
+      <div class="titleBox"> 
+        <img class="titleLogo" src="img/RaM_logo.png">
+        <p class="title"> Rick and Morty</p> 
       </div>
-
       <div class="titleDescriptionBox">   
         <br>       
         <p class="numberOfEpisodes">No. of Episodes : 41  </p>
-        <p class="titleDescription"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+        <p class="titleDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</i></p>
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           <br>
       </div>
-
-      <div class="episodeBox" >
-        <ol class="episodeList" ><b>Episodes</b></ol>
+      <div class="episodeBox">
+        <ol class="episodeList">Episodes</ol>
           <li class="episodeList">S01E01</li>
           <li class="episodeList">S01E02</li>
           <li class="episodeList">S01E03</li>
