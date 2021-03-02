@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8"/>
-    <title>Trail - Rick and Morty </title>
-    <link rel="stylesheet" href="stylesheets.css" type="text/css">
+    <meta charset="utf-8" />
+    <title>Trail - Rick and Morty </title>    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+    <div class="titleBox" > 
+      <img class="titleLogo" src="img/RaM_logo.png">
+      <p class="title">Rick and Morty</p> 
+    </div>
   </head>
   <body>
     <div class="container">
-      <div class="titleBox"> 
-        <img class="titleLogo" src="img/RaM_logo.png">
-        <p class="title"> Rick and Morty</p> 
-      </div>
       <div class="titleDescriptionBox">   
         <br>       
         <p class="numberOfEpisodes">No. of Episodes : 41  </p>
@@ -22,28 +22,48 @@
           <br>
       </div>
       <div class="episodeBox">
-        <ol class="episodeList">Episodes</ol>
-          <li class="episodeList">S01E01</li>
-          <li class="episodeList">S01E02</li>
-          <li class="episodeList">S01E03</li>
-          <li class="episodeList">S01E04</li>
-          <li class="episodeList">S01E05</li>
-          <li class="episodeList">S01E06</li>
-          <li class="episodeList">S01E06</li>
-          <li class="episodeList">S01E07</li>
-          <li class="episodeList">S01E08</li>
-          <li class="episodeList">S01E09</li>
-          <li class="episodeList">S01E10</li>
-          <li class="episodeList">S01E11</li>
-          <li class="episodeList">S02E01</li>
-          <li class="episodeList">S02E02</li>
-          <li class="episodeList">S02E03</li>
-          <li class="episodeList">S02E04</li>
-          <li class="episodeList">S02E05</li>
-          <li class="episodeList">S02E06</li>
-          <li class="episodeList">S02E07</li>
-          <li class="episodeList">S02E08</li>
-          <li class="episodeList">S02E09</li>
+        <div class="episodeButtonList">
+          <button>S01E01</button>
+          <button>S01E02</button>
+          <button>S01E03</button>
+          <button>S01E04</button>
+          <button>S01E05</button>
+          <button>S01E06</button>
+          <button>S01E07</button>
+          <button>S01E08</button>
+          <button>S01E09</button>
+          <button>S01E10</button>
+          <button>S02E01</button>
+          <button>S02E02</button>
+          <button>S02E03</button>
+          <button>S02E04</button>
+          <button>S02E05</button>
+          <button>S02E06</button>
+          <button>S02E07</button>
+          <button>S02E08</button>
+          <button>S02E09</button>
+          <button>S02E10</button>
+        </div>
+        <div class="episodeCard">
+          <p class="episodeName">Episode Name</p>
+          <p class="episodeCodeNumber">S01E01</p>
+          <p class="exibitionDate">Exibition Date</p>
+          <p class="characterList">CharacterList : </p>
+            <ul class="characterList">
+              <li class="character">Rick Sanchez,</li>
+              <li class="character">Morty Smith,</li>
+              <li class="character">Summer Smith,</li>
+              <li class="character">Beth Smith,</li>
+              <li class="character">Squanchy.</li> 
+            </ul>
+            <br>
+          <p class="episodeDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <img class="episodeImage" src="img/RaM_s01e01.jpg">
+        </div>  
       </div>
     </div>
   </body>
