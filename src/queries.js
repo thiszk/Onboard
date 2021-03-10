@@ -15,11 +15,11 @@ const RaMQuery = `query RaM {
       }
     }
   }`;
-  
+
 export function getSeriesInfo() {
     axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: RaMQuery } })
     .then(renderEpisodeButtons)
     .catch(erro => console.log(erro));
 }
 
-export default RaMQuery;
+export default RaMQuery; 

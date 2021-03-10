@@ -1,8 +1,7 @@
-export function renderElementIntoDestiny(elementId, elementType, content, elementClass, destinyId) {
+export function renderElementIntoTarget({ elementId, elementType, content, elementClass, targetId }) {
     const element = document.createElement(elementType);
     element.id = elementId;
     element.innerHTML = content;
     element.className = elementClass;
-    document.getElementById(destinyId).appendChild(element);
+    document.getElementById(targetId).appendChild(element);
 }
- 
