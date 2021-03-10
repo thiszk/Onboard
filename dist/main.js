@@ -19,6 +19,17 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\nvar __WE
 
 /***/ }),
 
+/***/ "./src/genericFunctions.js":
+/*!*********************************!*\
+  !*** ./src/genericFunctions.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"renderElementIntoTarget\": () => (/* binding */ renderElementIntoTarget)\n/* harmony export */ });\nfunction renderElementIntoTarget({ elementId, elementType, content, elementClass, targetId }) {\n    const element = document.createElement(elementType);\n    element.id = elementId;\n    element.innerHTML = content;\n    element.className = elementClass;\n    document.getElementById(targetId).appendChild(element);\n}\n\n//# sourceURL=webpack://webpack-demo/./src/genericFunctions.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -26,18 +37,29 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\nvar __WE
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _name__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./name */ \"./src/name.js\");\n\n\n\nfunction component() {\n  const element = document.createElement('div');\n\n  element.innerHTML = lodash__WEBPACK_IMPORTED_MODULE_0___default().join(['Olá,', `${_name__WEBPACK_IMPORTED_MODULE_1__.default}!`], ' ');\n\n  return element;\n}\n\ndocument.body.appendChild(component());\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _queries__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./queries */ \"./src/queries.js\");\n\n\n\n(0,_queries__WEBPACK_IMPORTED_MODULE_1__.getSeriesInfo)();\n\n\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/name.js":
-/*!*********************!*\
-  !*** ./src/name.js ***!
-  \*********************/
+/***/ "./src/queries.js":
+/*!************************!*\
+  !*** ./src/queries.js ***!
+  \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst name = 'Thiagoasdasda';\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (name);\n\n//# sourceURL=webpack://webpack-demo/./src/name.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getSeriesInfo\": () => (/* binding */ getSeriesInfo),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _renderEpisodeButtons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./renderEpisodeButtons */ \"./src/renderEpisodeButtons.js\");\n\n\nconst RaMQuery = `query RaM {\n    episodes {\n      info {\n        count\n      }\n      results {\n        episode\n        name\n        air_date\n        characters {\n          name\n        }\n      }\n    }\n  }`;\n\nfunction getSeriesInfo() {\n    axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: RaMQuery } })\n    .then(_renderEpisodeButtons__WEBPACK_IMPORTED_MODULE_0__.renderEpisodeButtons)\n    .catch(erro => console.log(erro));\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RaMQuery); \n\n//# sourceURL=webpack://webpack-demo/./src/queries.js?");
+
+/***/ }),
+
+/***/ "./src/renderEpisodeButtons.js":
+/*!*************************************!*\
+  !*** ./src/renderEpisodeButtons.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"renderEpisodeButtons\": () => (/* binding */ renderEpisodeButtons)\n/* harmony export */ });\n/* harmony import */ var _genericFunctions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./genericFunctions */ \"./src/genericFunctions.js\");\n\n\nconst blank = '';\nconst episodesPerPage = 20;\n\nfunction renderEpisodeButtons(RaMQuery) {\n    const RaMResults = RaMQuery.data.data.episodes.results;\n    (0,_genericFunctions__WEBPACK_IMPORTED_MODULE_0__.renderElementIntoTarget)({\n        elementId: 'episodeButtonList',\n        elementType: 'div', \n        content: blank,\n        elementClass: 'episodeButtonList', \n        targetId: 'episodeBox' \n    });\n    for (let index = 0; index < episodesPerPage; index++) {\n        var buttonId = [];\n        buttonId[index] = 'button' + index;   \n    }\n    RaMResults.forEach(episode =>(0,_genericFunctions__WEBPACK_IMPORTED_MODULE_0__.renderElementIntoTarget)({\n        elementId: buttonId[episode],\n        elementType: 'button', \n        content: episode.episode,\n        elementClass: 'episodeButton', \n        targetId: 'episodeButtonList' \n    }));\n}\n\n\n//# sourceURL=webpack://webpack-demo/./src/renderEpisodeButtons.js?");
 
 /***/ })
 

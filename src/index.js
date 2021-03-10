@@ -1,12 +1,5 @@
 import _ from 'lodash';
-import name from './name';
+import { getSeriesInfo } from './queries';
 
-function component() {
-  const element = document.createElement('div');
+getSeriesInfo();
 
-  element.innerHTML = _.join(['Olá,', `${name}!`], ' ');
-
-  return element;
-}
-
-document.body.appendChild(component());

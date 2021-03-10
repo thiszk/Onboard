@@ -71,23 +71,12 @@
     padding-left: 10px;
   }
 
-  p.episodeName{
+  .cardInfo{
     text-align: center;
     position: relative;
     font-size: 20px;
   }
 
-  p.episodeCodeNumber{
-    position: relative;
-    font-size: 15px;
-  }
-
-  ul.characterList{
-    color: inherit;
-    font-size: 15px;
-    list-style-type: none;
-    
-  }
   li.character {
     color: inherit;
     float: left;
@@ -99,12 +88,6 @@
     font-size: 12px;
     float: left;
     font-style: italic;
-  }
-
-  p.characterList{
-    float: left;
-    margin: 0px;
-    color: white;
   }
 
   .episodeImage{
