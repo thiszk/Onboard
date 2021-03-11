@@ -10,29 +10,31 @@ export function renderEpisodeCard() {
         elementClass: 'episodeCard', 
         targetId: 'episodeBox' 
     });
-    const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList', 'characters']
-    for (let index = 0; index < cardInfo.length; index++) {
-        renderElementIntoTarget({
-            elementId: cardInfo[index],
-            elementType: 'p', 
-            content: blank,
-            elementClass: cardInfo[index], 
-            targetId: 'episodeCard' 
-        });
-    }
+    const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList', 'characters'];
+    cardInfo.forEach( item => { renderElementIntoTarget({
+        elementId: item,
+        elementType: 'p', 
+        content: blank,
+        elementClass: item, 
+        targetId: 'episodeCard' 
+    }) });
 }
 
 export function setOnclickAttribute(RaMQuery) {
     const RaMResults = RaMQuery.data.data.episodes.results;
-    RaMResults.forEach(episode => document.getElementById(episode.id).onclick = renderCard.bind(this, RaMResults));
+    RaMResults.forEach(episode => document.getElementById(episode.id).onclick = () => renderCard(RaMResults, episode.id));
 }
 
-function renderCard(RaMResults) {
-    const RaM = RaMResults[`${event.target.id}`];
+function renderCard(RaMResults, episodeId) {
+    const RaM = RaMResults[`${episodeId}`];
     let charactersList = 'Character List: ';
-    for (let numberOfCharacters = 0; numberOfCharacters < RaM.characters.length; numberOfCharacters++) {
-        charactersList += RaM.characters[numberOfCharacters].name + ', ';    
-    }
+    let characterSeparationMark = ', ';
+    RaM.characters.forEach((characterName, index) => { 
+        if (index == RaM.characters.length - 1) {
+            characterSeparationMark = '.';
+        }
+        charactersList += characterName.name + characterSeparationMark;
+        });
     const episode = {
         episodeName: 'Episode Title: ' + RaM.name,
         episodeCodeNumber: 'Episode Code: ' + RaM.episode,

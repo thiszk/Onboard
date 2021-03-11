@@ -22,7 +22,7 @@
   }
 
   .titleDescriptionBox{
-    background-color: black;
+    background-image: linear-gradient(to bottom, #000000 0%, #303027 100%);
     width: inherit;
     margin-top: -50px;
   } 
