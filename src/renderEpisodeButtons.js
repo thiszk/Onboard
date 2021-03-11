@@ -1,10 +1,10 @@
 import { renderElementIntoTarget } from './genericFunctions';
-import { renderEpisodeCard, setOnclickAttribute } from './renderEpisodeCard';
 
 const blank = '';
 
 export function renderEpisodeButtons(RaMQuery) {
     const RaMResults = RaMQuery.data.data.episodes.results;
+    let page = 1;
     renderElementIntoTarget({
         elementId: 'episodeButtonList',
         elementType: 'div', 
@@ -19,7 +19,4 @@ export function renderEpisodeButtons(RaMQuery) {
         elementClass: 'episodeButton', 
         targetId: 'episodeButtonList' 
     })); 
-    renderEpisodeCard();
-    setOnclickAttribute(RaMQuery);
 }
-

@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { getSeriesInfo } from './queries';
+import { getSeriesInfo, getButtonInfo, getCardInfo } from './queries';
 
 getSeriesInfo();
-
-
+getButtonInfo();
+getCardInfo();

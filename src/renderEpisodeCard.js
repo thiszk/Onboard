@@ -2,7 +2,8 @@ import { renderElementIntoTarget, changeInnerHTML } from './genericFunctions';
 
 const blank = '';
 
-export function renderEpisodeCard() {
+export function renderEpisodeCard(RaMQuery) {
+    let page = 1;
     renderElementIntoTarget({
         elementId: 'episodeCard',
         elementType: 'div', 
@@ -18,6 +19,7 @@ export function renderEpisodeCard() {
         elementClass: item, 
         targetId: 'episodeCard' 
     }) });
+    setOnclickAttribute(RaMQuery);
 }
 
 export function setOnclickAttribute(RaMQuery) {
