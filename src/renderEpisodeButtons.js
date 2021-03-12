@@ -1,10 +1,10 @@
 import { renderElementIntoTarget } from './genericFunctions';
+import { loadEpisodeInfo } from './renderEpisodeCard';
 
 const blank = '';
 
 export function renderEpisodeButtons(RaMQuery) {
     const RaMResults = RaMQuery.data.data.episodes.results;
-    let page = 1;
     renderElementIntoTarget({
         elementId: 'episodeButtonList',
         elementType: 'div', 
@@ -18,5 +18,11 @@ export function renderEpisodeButtons(RaMQuery) {
         content: episode.episode,
         elementClass: 'episodeButton', 
         targetId: 'episodeButtonList' 
-    })); 
+    }));
+    setOnclickAttribute(RaMQuery);
+}
+
+function setOnclickAttribute(RaMQuery) {
+    const RaMResults = RaMQuery.data.data.episodes.results;
+    RaMResults.forEach((episode, index) => document.getElementById(episode.id).onclick = () => loadEpisodeInfo(1, index));    
 }

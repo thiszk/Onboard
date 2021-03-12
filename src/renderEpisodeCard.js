@@ -1,9 +1,9 @@
-import { renderElementIntoTarget, changeInnerHTML } from './genericFunctions';
+import { renderElementIntoTarget, changeInnerHTML, loadState, removeLoadState } from './genericFunctions';
+import { getCardInfo } from './queries';
 
 const blank = '';
 
-export function renderEpisodeCard(RaMQuery) {
-    let page = 1;
+export function renderEpisodeCard() {
     renderElementIntoTarget({
         elementId: 'episodeCard',
         elementType: 'div', 
@@ -11,24 +11,19 @@ export function renderEpisodeCard(RaMQuery) {
         elementClass: 'episodeCard', 
         targetId: 'episodeBox' 
     });
-    const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList', 'characters'];
+    const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
     cardInfo.forEach( item => { renderElementIntoTarget({
         elementId: item,
         elementType: 'p', 
         content: blank,
         elementClass: item, 
         targetId: 'episodeCard' 
-    }) });
-    setOnclickAttribute(RaMQuery);
+    }); });
 }
 
-export function setOnclickAttribute(RaMQuery) {
-    const RaMResults = RaMQuery.data.data.episodes.results;
-    RaMResults.forEach(episode => document.getElementById(episode.id).onclick = () => renderCard(RaMResults, episode.id));
-}
-
-function renderCard(RaMResults, episodeId) {
-    const RaM = RaMResults[`${episodeId}`];
+export function renderCard(RaMQuery, episodeIndex) {
+    const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
+    const RaM = RaMQuery.data.data.episodes.results[`${episodeIndex}`];
     let charactersList = 'Character List: ';
     let characterSeparationMark = ', ';
     RaM.characters.forEach((characterName, index) => { 
@@ -46,4 +41,11 @@ function renderCard(RaMResults, episodeId) {
     Object.keys(episode).forEach(key => {
         changeInnerHTML(key, episode[key]);
     });
+    removeLoadState(cardInfo);
+}
+
+export function loadEpisodeInfo(query, episodeIndex) {
+    const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
+    loadState(cardInfo);
+    getCardInfo(query, episodeIndex);
 }

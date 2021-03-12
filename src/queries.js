@@ -1,5 +1,5 @@
-import { renderEpisodeButtons } from './renderEpisodeButtons';
-import { renderEpisodeCard } from './renderEpisodeCard';
+import { renderEpisodeBox } from './renderEpisodeBoxContent';
+import { renderCard} from './renderEpisodeCard';
 import { setTitleDescription } from './setDescription';
 
 export const seriesInfo = `query seriesInfo{
@@ -10,7 +10,7 @@ export const seriesInfo = `query seriesInfo{
     }
   }`;
   
-export const buttonsInfo = `query buttonInfo($page: page) {
+export const buttonsInfo = `query buttonInfo($page: Int) {
       episodes(page: $page) {
       results {
         id
@@ -19,19 +19,17 @@ export const buttonsInfo = `query buttonInfo($page: page) {
     }
   }`;
 
-export const cardInfo = `query cardInfo($page: page) {
-      episodes(page: $page) {
-      results {
-        id
-        episode
-        name
-        air_date
-        characters {
-          name
-        }
-      }
-    }
-  }`;
+export const cardInfo = `query cardInfo($page: Int) {
+  episodes(page: $page) {
+  results {
+    id
+    episode
+    name
+    air_date
+    characters{name}
+  }
+}
+}`;
 
 export function getSeriesInfo() {
     axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: seriesInfo } })
@@ -39,14 +37,14 @@ export function getSeriesInfo() {
     .catch(erro => console.log(erro));
 }
 
-export function getButtonInfo() {
-  axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: buttonsInfo } })
-  .then(renderEpisodeButtons)
+export function getButtonInfo(episodesPage) {
+  axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: buttonsInfo, variables: { page: episodesPage } } })
+  .then(renderEpisodeBox)
   .catch(erro => console.log(erro));
 }
 
-export function getCardInfo() {
-  axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: cardInfo } })
-  .then(renderEpisodeCard)
+export function getCardInfo(episodesPage, episodeIndex) {
+  axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: cardInfo, variables: { page: episodesPage } } })
+  .then(query =>renderCard(query, episodeIndex))
   .catch(erro => console.log(erro));
 }
