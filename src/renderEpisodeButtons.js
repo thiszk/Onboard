@@ -24,5 +24,5 @@ export function renderEpisodeButtons(RaMQuery) {
 
 function setOnclickAttribute(RaMQuery) {
     const RaMResults = RaMQuery.data.data.episodes.results;
-    RaMResults.forEach((episode, index) => document.getElementById(episode.id).onclick = () => loadEpisodeInfo(1, index));    
+    RaMResults.forEach((episode, index) => document.getElementById(episode.id).onclick = () => loadEpisodeInfo(RaMResults[`${index}`].id) );    
 }

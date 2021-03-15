@@ -19,17 +19,16 @@ export const buttonsInfo = `query buttonInfo($page: Int) {
     }
   }`;
 
-export const cardInfo = `query cardInfo($page: Int) {
-  episodes(page: $page) {
-  results {
-    id
-    episode
-    name
-    air_date
-    characters{name}
-  }
-}
-}`;
+export const cardInfo = `query cardInfo($episodeId: ID!){
+    episode(id: $episodeId){
+      episode
+      name
+      air_date
+      characters {
+        name
+      }
+    }
+  }`;
 
 export function getSeriesInfo() {
     axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: seriesInfo } })
@@ -40,11 +39,9 @@ export function getSeriesInfo() {
 export function getButtonInfo(episodesPage) {
   axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: buttonsInfo, variables: { page: episodesPage } } })
   .then(renderEpisodeBox)
-  .catch(erro => console.log(erro));
+  .catch(erro => console.log(erro) );
 }
 
-export function getCardInfo(episodesPage, episodeIndex) {
-  axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: cardInfo, variables: { page: episodesPage } } })
-  .then(query =>renderCard(query, episodeIndex))
-  .catch(erro => console.log(erro));
+export function getCardInfo(episodeId) {
+  return axios({ url: 'https://rickandmortyapi.com/graphql', method: 'post', data: { query: cardInfo, variables: { episodeId: episodeId } } })
 }

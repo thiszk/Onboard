@@ -21,9 +21,10 @@ export function renderEpisodeCard() {
     }); });
 }
 
-export function renderCard(RaMQuery, episodeIndex) {
+export function renderCard(RaMQuery) {
     const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
-    const RaM = RaMQuery.data.data.episodes.results[`${episodeIndex}`];
+    const RaM = RaMQuery.data.data.episode;
+    console.log(RaM);
     let charactersList = 'Character List: ';
     let characterSeparationMark = ', ';
     RaM.characters.forEach((characterName, index) => { 
@@ -44,8 +45,17 @@ export function renderCard(RaMQuery, episodeIndex) {
     removeLoadState(cardInfo);
 }
 
-export function loadEpisodeInfo(query, episodeIndex) {
+export function loadEpisodeInfo(episodeIndex) {
     const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
     loadState(cardInfo);
-    getCardInfo(query, episodeIndex);
+
+    requestAndRenderCard(episodeIndex);
+}
+
+export async function requestAndRenderCard(episodeIndex) {
+    let query;
+    try {
+      query = await getCardInfo(episodeIndex);
+    } 
+    finally{renderCard(query)};
 }
