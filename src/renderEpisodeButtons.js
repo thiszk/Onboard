@@ -1,5 +1,5 @@
 import { renderElementIntoTarget } from './genericFunctions';
-import { renderEpisodeCard, setOnclickAttribute } from './renderEpisodeCard';
+import { loadEpisodeInfo } from './renderEpisodeCard';
 
 const blank = '';
 
@@ -18,8 +18,11 @@ export function renderEpisodeButtons(RaMQuery) {
         content: episode.episode,
         elementClass: 'episodeButton', 
         targetId: 'episodeButtonList' 
-    })); 
-    renderEpisodeCard();
+    }));
     setOnclickAttribute(RaMQuery);
 }
 
+function setOnclickAttribute(RaMQuery) {
+    const RaMResults = RaMQuery.data.data.episodes.results;
+    RaMResults.forEach((episode, index) => document.getElementById(episode.id).onclick = () => loadEpisodeInfo(RaMResults[`${index}`].id) );    
+}

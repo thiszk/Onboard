@@ -1,4 +1,5 @@
-import { renderElementIntoTarget, changeInnerHTML } from './genericFunctions';
+import { renderElementIntoTarget, changeInnerHTML, loadState, removeLoadState } from './genericFunctions';
+import { getCardInfo } from './queries';
 
 const blank = '';
 
@@ -10,23 +11,20 @@ export function renderEpisodeCard() {
         elementClass: 'episodeCard', 
         targetId: 'episodeBox' 
     });
-    const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList', 'characters'];
+    const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
     cardInfo.forEach( item => { renderElementIntoTarget({
         elementId: item,
         elementType: 'p', 
         content: blank,
         elementClass: item, 
         targetId: 'episodeCard' 
-    }) });
+    }); });
 }
 
-export function setOnclickAttribute(RaMQuery) {
-    const RaMResults = RaMQuery.data.data.episodes.results;
-    RaMResults.forEach(episode => document.getElementById(episode.id).onclick = () => renderCard(RaMResults, episode.id));
-}
-
-function renderCard(RaMResults, episodeId) {
-    const RaM = RaMResults[`${episodeId}`];
+export function renderCard(RaMQuery) {
+    const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
+    const RaM = RaMQuery.data.data.episode;
+    console.log(RaM);
     let charactersList = 'Character List: ';
     let characterSeparationMark = ', ';
     RaM.characters.forEach((characterName, index) => { 
@@ -44,4 +42,20 @@ function renderCard(RaMResults, episodeId) {
     Object.keys(episode).forEach(key => {
         changeInnerHTML(key, episode[key]);
     });
+    removeLoadState(cardInfo);
+}
+
+export function loadEpisodeInfo(episodeIndex) {
+    const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
+    loadState(cardInfo);
+
+    requestAndRenderCard(episodeIndex);
+}
+
+export async function requestAndRenderCard(episodeIndex) {
+    let query;
+    try {
+      query = await getCardInfo(episodeIndex);
+    } 
+    finally{renderCard(query)};
 }
