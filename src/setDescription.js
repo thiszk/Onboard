@@ -1,12 +1,14 @@
+import { getSeriesInfo } from "./queries";
+
 export function setTitleDescription(RaMQuery) {
     const RaMInfo = RaMQuery.data.data.episodes.info;
-
-    document.getElementById("numberOfEpisodes").innerHTML = "No. of Episodes : " + RaMInfo.count;
-    document.getElementById("titleDescription").innerHTML = 
-        `Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+    document.getElementById('numberOfEpisodes').innerHTML = 'No. of Episodes : ' + RaMInfo.count;
+    document.getElementById('titleDescription').innerHTML = 
+        `Rick and Morty is an American adult animated science fiction sitcom created by Justin Roiland and Dan Harmon 
+        for Cartoon Network's nighttime Adult Swim programming block. The series follows the misadventures of cynical 
+        mad scientist Rick Sanchez and his good-hearted but fretful grandson Morty Smith, who split their time between 
+        domestic life and interdimensional adventures.`;
 }
-  
+export function renderTitleDescription() {
+    getSeriesInfo().then(query => setTitleDescription(query));
+}
