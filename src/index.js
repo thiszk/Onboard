@@ -1,5 +1,10 @@
-import _ from 'lodash';
-import { getSeriesInfo, getButtonInfo} from './queries';
+import { renderEpisodeBox } from './renderEpisodeBoxContent';
+import { renderTitleDescription } from './setDescription';
+const initialPage = 1;
 
-getSeriesInfo(2);
-getButtonInfo(2);
+function renderPage() {
+    renderTitleDescription();
+    renderEpisodeBox(initialPage);
+}
+
+renderPage();

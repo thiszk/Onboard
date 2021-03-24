@@ -18,3 +18,14 @@ export function loadState(array) {
 export function removeLoadState(array) {
     array.forEach(element => {document.getElementById(element).classList.remove("loader"); });
 }
+
+export function highlightElement(elementId) {
+    document.getElementById(elementId).classList.add('highlight');
+}
+
+export function clearHighlightEpisode() {
+    let highlightedElements = document.getElementsByClassName('highlight');
+    [].forEach.call(highlightedElements, function(elements) {
+        elements.classList.remove("highlight");
+    });
+}

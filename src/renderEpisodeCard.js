@@ -1,4 +1,5 @@
-import { renderElementIntoTarget, changeInnerHTML, loadState, removeLoadState } from './genericFunctions';
+import { renderElementIntoTarget, changeInnerHTML, loadState,
+         removeLoadState, highlightElement, clearHighlightEpisode } from './genericFunctions';
 import { getCardInfo } from './queries';
 
 const blank = '';
@@ -12,19 +13,20 @@ export function renderEpisodeCard() {
         targetId: 'episodeBox' 
     });
     const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
-    cardInfo.forEach( item => { renderElementIntoTarget({
-        elementId: item,
-        elementType: 'p', 
-        content: blank,
-        elementClass: item, 
-        targetId: 'episodeCard' 
-    }); });
+    cardInfo.forEach( item => { 
+        renderElementIntoTarget({
+            elementId: item,
+            elementType: 'p', 
+            content: blank,
+            elementClass: item, 
+            targetId: 'episodeCard' 
+        }); 
+    });
 }
 
 export function renderCard(RaMQuery) {
     const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
     const RaM = RaMQuery.data.data.episode;
-    console.log(RaM);
     let charactersList = 'Character List: ';
     let characterSeparationMark = ', ';
     RaM.characters.forEach((characterName, index) => { 
@@ -45,17 +47,16 @@ export function renderCard(RaMQuery) {
     removeLoadState(cardInfo);
 }
 
-export function loadEpisodeInfo(episodeIndex) {
+export function loadEpisodeInfo(episodeIndex, buttonId) {
     const cardInfo = ['episodeName', 'episodeCodeNumber', 'exibitionDate', 'characterList'];
     loadState(cardInfo);
-
+    clearHighlightEpisode();
     requestAndRenderCard(episodeIndex);
+    highlightElement(buttonId);
 }
 
-export async function requestAndRenderCard(episodeIndex) {
-    let query;
-    try {
-      query = await getCardInfo(episodeIndex);
-    } 
-    finally{renderCard(query)};
+export function requestAndRenderCard(episodeIndex) {
+    getCardInfo(episodeIndex).then(query => {
+        renderCard(query);
+    });
 }
